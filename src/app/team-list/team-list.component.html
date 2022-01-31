@@ -64,12 +64,12 @@
                             <input type="text" class="w-100 p-1" formControlName="name" placeholder="Enter name" name="name" id="name"
                                 required>
                         </div>
-                        <!-- <div class="row mt-3 m-2 formselect"> -->
-                            <ng-select placeholder="Status: " formControlName="status" [closeOnSelect]="true" class="row"
+                        <div class="row mt-3 m-2 formselect">
+                            <ng-select placeholder="Status: " formControlName="status" [closeOnSelect]="true"
                                 [(ngModel)]="selectedStatus" appendTo="body">
                                 <ng-option *ngFor="let status of statuses" [value]="status"> {{status}}</ng-option>
                             </ng-select>
-                        <!-- </div> -->
+                        </div>
                         <button type="submit" class="btn bg-success mr-2" (click)="editTeam()">Save</button>
                         <button #closeEditTeamModal class="btn bg-secondary" type="button" data-dismiss="modal"> Cancel </button>
                     </div>
