@@ -118,14 +118,10 @@ export class UserListComponent implements OnInit {
     this.user.badgeNumber = this.addForm.value.badgenumber;
     this.user.team = this.addForm.value.team;
     this.user.userType = this.addForm.value.role;
-    console.log(this.user);
-    // newUser.name= this.addForm.value.name;
     this.userService.addUser(this.user).subscribe( res => {
       this.message="added"
         this.closeModal(false);
        this.showAlert();
-        console.log(this.user)
-        
     })
 
   }
@@ -136,15 +132,11 @@ export class UserListComponent implements OnInit {
     this.user.badgeNumber = this.editForm.value.badgenumber;
     this.user.team = this.editForm.value.team;
     this.user.userType = this.editForm.value.role;
-    console.log(this.user);
-    // newUser.name= this.addForm.value.name;
     this.userService.editUser(this.selecteduserid, this.user).subscribe( res => {
       this.message="edited";
       this.closeModal(true);
       this.showAlert();
       console.log(this.user);
-
-        
     })
   }
 
