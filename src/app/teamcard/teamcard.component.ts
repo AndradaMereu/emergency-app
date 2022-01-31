@@ -12,7 +12,7 @@ export class TeamcardComponent implements OnInit {
   @Input() id!: number;
   @Input() name: string | undefined;
   @Input() status: string | undefined;    
-  @Output() deleteEvent = new EventEmitter<string>();
+  @Output() deleteEvent = new EventEmitter<number>();
   @Output() editEvent = new EventEmitter<number>();
 
   constructor(private teamService: TeamService) { }
@@ -26,7 +26,7 @@ export class TeamcardComponent implements OnInit {
 
   deleteTeam(){
     this.teamService.deleteTeam(this.id).subscribe(res => {
-        this.deleteEvent.emit();
+        this.deleteEvent.emit(this.id);
     })
   }
 

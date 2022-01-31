@@ -34,7 +34,6 @@ export class UserServiceService {
   }
 
   deleteUser(id: number){
-    console.log(id);
     return this.httpClient.delete(`${this.baseUrl}/api/users/${id}`);
   }
 }

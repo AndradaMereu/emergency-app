@@ -50,6 +50,7 @@ message:string="";
     console.log(this.newTeam);
     this.teamService.addTeam(this.newTeam).subscribe( res => {
       this.message="added";
+      this.teams.push(<Team>res);
         this.closeModal(false);
        this.showAlert();
         
@@ -62,6 +63,9 @@ message:string="";
       this.newTeam.status = this.editForm.value.status;
       console.log(this.newTeam.name)
     this.teamService.updateTeam(this.selectedTeamId, this.newTeam).subscribe(res => {
+        var editedTeam: any = this.teams.find(x => x.id === (<Team>res).id)
+        editedTeam.name=this.newTeam.name;
+        editedTeam.staus=this.newTeam.status;
         this.message="edited"
         this.showAlert();
         this.closeModal(true);
@@ -79,6 +83,8 @@ message:string="";
 
   deleteTeam(event:any){
       this.message="deleted";
+      var deletedTeam= this.teams.findIndex(x => x.id === event);
+      this.teams.splice(deletedTeam,1);
       this.showAlert();
       console.log(this.message);
   }

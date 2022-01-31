@@ -40,8 +40,18 @@ export class AuthService {
     return this.userSubject.value;
   }
 
+
+
+  public isSuperAgent(): boolean{
+    const role: any = localStorage.getItem('role');
+    if(role === '1')
+    {return true;}
+    else return false;
+  }
+
   public isAuthenticated(): boolean {
     const token: any = localStorage.getItem('authorization');
+    
     // Check whether the token is expired and return
     // true or false
     return !this.jwtHelper.isTokenExpired(token);

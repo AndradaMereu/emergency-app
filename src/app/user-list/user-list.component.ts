@@ -53,6 +53,7 @@ export class UserListComponent implements OnInit {
     this.getTeams()
   }
 
+
   getUsers(){
     this.userService.getUsers().subscribe( result => {
       this.users = result;
@@ -161,6 +162,7 @@ export class UserListComponent implements OnInit {
 
   deleteUser(event: any){
     this.userService.deleteUser(event).subscribe(res => {
+
         this.message="deleted";
         this.showAlert();
     })

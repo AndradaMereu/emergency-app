@@ -21,8 +21,7 @@ export class AuthenticationGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    if (!this.authService.isAuthenticated()) {
-      console.log("lalaif");
+    if (!this.authService.isAuthenticated() || !this.authService.isSuperAgent()) {
       this.router.navigate(['login']);
       return false;
     }
