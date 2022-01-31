@@ -1,0 +1,164 @@
+<app-header></app-header>
+<div class="container">
+    <div #alert class="alert alert-success alert-dismissible fade" role="alert">
+        <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+         User {{message}} successfully!
+      </div>
+    <div class="d-flex flex-wrap justify-content-between">
+        <div class="title p-5 text-center h2">Users</div>
+        <button class="btn bg-dark text-white m-5" data-toggle="modal" data-target="#myModal">Add user</button>
+
+    </div>
+    <mat-tab-group>
+        <mat-tab label="All users">
+            <div class="d-flex flex-wrap mt-5">
+                <div class="m-4" *ngFor="let user of users">
+                    <app-user-item [name]="user.name" (useridEvent)="selectedUser($event)"  (useridDeleteEvent)="deleteUser($event)" [badgeNumber]="user.badgeNumber" [role]="user.role.authority" [id]="user.id"
+                    [team]="user.team.name">
+                    </app-user-item>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Dispatchers">
+            <div class="d-flex flex-wrap mt-5">
+                <div class="m-4" *ngFor="let user of getDispatcherUsers()">
+                    <app-user-item [name]="user.name" (useridEvent)="selectedUser($event)"  (useridDeleteEvent)="deleteUser($event)" [badgeNumber]="user.badgeNumber" [role]="user.role.authority"  [team]="user.team.name" [id]="user.id">
+                    </app-user-item>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Police">
+            <div class="d-flex flex-wrap mt-5">
+                <div class="m-4" *ngFor="let user of getPolicemanUsers()">
+                    <app-user-item [name]="user.name" (useridEvent)="selectedUser($event)"  (useridDeleteEvent)="deleteUser($event)" [badgeNumber]="user.badgeNumber" [role]="user.role.authority"  [team]="user.team.name" [id]="user.id">
+                    </app-user-item>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Ambulance">
+            <div class="d-flex flex-wrap mt-5">
+                <div class="m-4" *ngFor="let user of getEMTUsers()">
+                    <app-user-item [name]="user.name" (useridEvent)="selectedUser($event)"  (useridDeleteEvent)="deleteUser($event)" [badgeNumber]="user.badgeNumber" [role]="user.role.authority"  [team]="user.team.name" [id]="user.id">
+                    </app-user-item>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Firefighters">
+            <div class="d-flex flex-wrap mt-5">
+                <div class="m-4" *ngFor="let user of getFirefighterUsers()">
+                    <app-user-item [name]="user.name" (useridEvent)="selectedUser($event)"  (useridDeleteEvent)="deleteUser($event)" [badgeNumber]="user.badgeNumber" [role]="user.role.authority"  [team]="user.team.name" [id]="user.id">
+                    </app-user-item>
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>
+<div id="myModal" class="modal fade zindex" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add user</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="addForm">
+                    <div class="container">
+                        <div class="row m-2 mt-3">
+                            <input type="text" class="w-100 p-1" formControlName="name" placeholder="Enter name" name="name" id="name"
+                                required>
+                        </div>
+
+                        <div class="row m-2 mt-3">
+                            <input type="password" formControlName="password" class="w-100 p-1" placeholder="Enter Password" name="password"
+                                id="password" required>
+                        </div>
+                        <div class="row m-2 mt-3">
+                            <input type="number" formControlName="badgenumber" class="w-100 p-1" placeholder="Badgenumber" name="badgenumber"
+                                id="badgenumber" required>
+                        </div>
+                        <div class="row">
+                            <div class="form-group mt-3 m-2  col ">
+                                <ng-select  placeholder="Category: " formControlName="role"
+                                    [closeOnSelect]="true" [(ngModel)]="selectedCategory" appendTo="body"
+                                    (change)="selected($event)"
+                                    >
+                                    <ng-option *ngFor="let role of categories" [value]="role.id"> {{role.name}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <div class="form-group mt-3 m-2 col">
+                                <ng-select placeholder="Teams: " formControlName="team" [closeOnSelect]="true"
+                                    [(ngModel)]="selectedTeams" appendTo="body" (change)="selectedTeam($event)">
+                                    <ng-option *ngFor="let team of teams" [value]="team.id"> {{team.name}}</ng-option>
+                                </ng-select>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <button type="submit" class="btn bg-success mr-2" (click)="addUser()">Save</button>
+                        <button #closeModal class="btn bg-secondary" type="button" data-dismiss="modal"> Cancel </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="myEditModal" class="modal fade zindex" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit user</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="editForm">
+                    <div class="container">
+                        <div class="row m-2 mt-3">
+                            <input type="text" class="w-100 p-1" formControlName="name" placeholder="Enter name" name="name" id="name"
+                                required>
+                        </div>
+
+                        <div class="row m-2 mt-3">
+                            <input type="password" formControlName="password" class="w-100 p-1" placeholder="Enter Password" name="password"
+                                id="password" required>
+                        </div>
+                        <div class="row m-2 mt-3">
+                            <input type="number" formControlName="badgenumber" class="w-100 p-1" placeholder="Badgenumber" name="badgenumber"
+                                id="badgenumber" required>
+                        </div>
+                        <div class="row">
+                            <div class="form-group mt-3 m-2  col ">
+                                <ng-select  placeholder="Category: " formControlName="role"
+                                    [closeOnSelect]="true" [(ngModel)]="selectedCategory" appendTo="body"
+                                    (change)="selected($event)"
+                                    >
+                                    <ng-option *ngFor="let role of categories" [value]="role.id"> {{role.name}}</ng-option>
+                                </ng-select>
+                            </div>
+                            <div class="form-group mt-3 m-2 col">
+                                <ng-select placeholder="Teams: " formControlName="team" [closeOnSelect]="true"
+                                    [(ngModel)]="selectedTeams" appendTo="body" (change)="selectedTeam($event)">
+                                    <ng-option *ngFor="let team of teams" [value]="team.id"> {{team.name}}</ng-option>
+                                </ng-select>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <button type="submit" class="btn bg-success mr-2" (click)="editUser()">Save</button>
+                        <button #closeEditModal class="btn bg-secondary" type="button" data-dismiss="modal"> Cancel </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

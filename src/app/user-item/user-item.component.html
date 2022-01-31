@@ -1,0 +1,16 @@
+<div class="teamcard justify-content-between d-flex flex-column">
+    <div class="d-flex  ">Name: {{name}}</div>
+    <div class="d-flex  ">Badgenumber: {{badgeNumber}}</div>
+    <div class="d-flex ">Category: {{role}}</div>
+    <div class="d-flex ">Team: <span *ngIf="role !== 'DISPATCHER'">{{team}} </span></div>
+    <div class="d-flex flex-wrap">
+        <div class="d-flex text-center bg-dark p-2 text-white flex-column grow">
+            <i class="fas fa-edit " data-toggle="modal" data-target="#myEditModal" (click)="editUser()"></i>
+        </div>
+        <div class="d-flex text-center bg-danger p-2 text-white flex-column grow ">
+            <i class="fas fa-trash " (click)="delete()"></i>
+        </div>
+    </div>
+
+
+</div>

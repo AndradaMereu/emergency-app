@@ -1,0 +1,18 @@
+.teamcard{
+    padding: 16px 8px;
+    width: 100%;
+    box-shadow: 1px;
+    background-color: lightgray;
+    border-bottom: 1px solid black;
+}
+.grow{
+    flex-grow: 1;
+}
+
+.shrink{
+    flex-shrink: 1;
+}
+
+.fas{
+    cursor: pointer;
+}

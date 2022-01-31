@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+.container{
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    padding-right: 16px;
+    padding-left: 16px;
+    max-width: calc(100vw - 64px);
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+     max-width: calc(100vw - 32px);
+  
+  
+    @media (min-width: 1440px) {
+      max-width: 1440px;
+    }
+  
+    @media (max-width: 768px) {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+  }
+  
+  .text-center{
+      display: flex;
+      justify-content: center;
+  }
+  
+  .title{
+      padding: 64px;
+  }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+ng-select{
+  display: flex !important;
+  width: 100%;
+}
+
+@import "~@ng-select/ng-select/themes/material.theme.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";

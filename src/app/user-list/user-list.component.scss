@@ -1,0 +1,29 @@
+button{
+    height: fit-content;
+}
+
+mat-tab{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.mat-table-label{
+font-family: 'Montserrat', sans-serif;}
+
+.form-group{
+    // border: 1px solid black;
+    z-index: 3;
+    // background-color: blue;
+    padding: 8px;
+    // display: block;
+    margin-bottom: 20px !important;
+}
+
+ng-select{
+    position: relative;
+    z-index: 1000000;
+    padding: 8px;
+}
+
+.ng-dropdown-panel{
+    background: white !important;
+}
