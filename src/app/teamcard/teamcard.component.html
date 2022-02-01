@@ -1,10 +1,7 @@
 <div class="teamcard justify-content-between d-flex flex-wrap">
-    <div class="d-flex flex-column col-5">{{name}}</div>
+    <div class="d-flex flex-column col-6">{{name}}</div>
     <div class="d-flex flex-column col-5">{{status}}</div>
     <div class="d-flex flex-column text-center bg-dark p-2 text-white col">
         <i class="fas fa-edit " data-toggle="modal" data-target="#myEditTeamModal" (click)="editTeam()"></i>
-    </div>
-    <div class="d-flex  flex-column text-center bg-danger p-2 text-white col">
-        <i class="fas fa-trash " (click)="deleteTeam()"></i>
     </div>
 </div>

@@ -12,7 +12,7 @@
 
     </div>
 <div *ngFor="let team of teams">
-    <app-teamcard [id]="team.id" [name]="team.name" [status]="team.status" (deleteEvent)="deleteTeam($event)" (editEvent)="selectedTeam($event)"> </app-teamcard>
+    <app-teamcard [id]="team.id" [name]="team.name" [status]="team.status" (editEvent)="selectedTeam($event)"> </app-teamcard>
  </div>
 </div>
 <div id="myTeamModal" class="modal fade zindex" role="dialog">
@@ -21,7 +21,7 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Add user</h4>
+                <h4 class="modal-title">Add team</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
 
             </div>
@@ -53,7 +53,7 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Edit</h4>
+                <h4 class="modal-title">Edit team</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
 
             </div>
